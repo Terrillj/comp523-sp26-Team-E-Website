@@ -1,9 +1,14 @@
-// Smooth scrolling for navigation links
+// Smooth scrolling for navigation links (only for non-dropdown links, and not on mobile dropdown sub-links)
 document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     anchor.addEventListener("click", function (e) {
-        // Skip dropdown triggers entirely - they're handled separately
+        // Skip dropdown triggers - they're handled separately
         if (this.classList.contains("nav-dropdown-trigger")) {
-            return; // Let the dropdown handler manage this
+            return;
+        }
+        
+        // Skip dropdown menu links on mobile - they're handled in DOMContentLoaded
+        if (window.innerWidth <= 768 && this.closest(".nav-dropdown-menu")) {
+            return;
         }
         
         e.preventDefault();
@@ -69,90 +74,115 @@ document.addEventListener("DOMContentLoaded", () => {
         observer.observe(card);
     });
 
+    // Helper function to close hamburger menu
+    const closeHamburgerMenu = () => {
+        const hamburger = document.querySelector(".hamburger");
+        const navMenu = document.querySelector(".nav-menu");
+        if (hamburger && navMenu) {
+            hamburger.classList.remove("active");
+            navMenu.classList.remove("active");
+            hamburger.setAttribute("aria-expanded", "false");
+            // Close all dropdowns
+            document.querySelectorAll(".nav-dropdown-menu.active").forEach((menu) => {
+                menu.classList.remove("active");
+            });
+        }
+    };
+
     // Hamburger menu toggle
     const hamburger = document.querySelector(".hamburger");
     const navMenu = document.querySelector(".nav-menu");
 
     if (hamburger && navMenu) {
-        hamburger.addEventListener("click", () => {
+        hamburger.addEventListener("click", (e) => {
+            e.stopPropagation();
             hamburger.classList.toggle("active");
             navMenu.classList.toggle("active");
             const isExpanded = hamburger.classList.contains("active");
             hamburger.setAttribute("aria-expanded", isExpanded);
         });
 
-        // Close menu when clicking on a link (mobile) - but not dropdown triggers
-        const navLinks = document.querySelectorAll(".nav-menu a:not(.nav-dropdown-trigger)");
-        navLinks.forEach((link) => {
+        // Mobile dropdown toggle - handle BEFORE other click handlers
+        const dropdownTriggers = document.querySelectorAll(".nav-dropdown-trigger");
+        dropdownTriggers.forEach((trigger) => {
+            trigger.addEventListener("click", (e) => {
+                const isMobile = window.innerWidth <= 768;
+                
+                if (isMobile) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    
+                    const dropdown = trigger.closest(".nav-dropdown");
+                    const dropdownMenu = dropdown ? dropdown.querySelector(".nav-dropdown-menu") : null;
+                    
+                    if (dropdownMenu) {
+                        const isActive = dropdownMenu.classList.contains("active");
+                        
+                        // Close all other dropdowns
+                        document.querySelectorAll(".nav-dropdown-menu.active").forEach((menu) => {
+                            if (menu !== dropdownMenu) {
+                                menu.classList.remove("active");
+                            }
+                        });
+                        
+                        // Toggle current dropdown
+                        if (isActive) {
+                            dropdownMenu.classList.remove("active");
+                        } else {
+                            dropdownMenu.classList.add("active");
+                        }
+                    }
+                }
+            }, true); // Capture phase - runs first
+        });
+
+        // Handle clicks on dropdown sub-links (scroll and close menu)
+        const dropdownLinks = document.querySelectorAll(".nav-dropdown-menu a");
+        dropdownLinks.forEach((link) => {
+            link.addEventListener("click", (e) => {
+                const isMobile = window.innerWidth <= 768;
+                if (isMobile) {
+                    const href = link.getAttribute("href");
+                    if (href && href.startsWith("#")) {
+                        e.preventDefault();
+                        const target = document.querySelector(href);
+                        if (target) {
+                            const nav = document.querySelector(".navbar");
+                            const navHeight = nav ? nav.offsetHeight : 0;
+                            const targetPosition = target.offsetTop - navHeight;
+                            
+                            window.scrollTo({
+                                top: targetPosition,
+                                behavior: "smooth",
+                            });
+                        }
+                    }
+                    // Close hamburger menu after navigation
+                    closeHamburgerMenu();
+                }
+            });
+        });
+
+        // Close menu when clicking on regular nav links (mobile)
+        const regularNavLinks = document.querySelectorAll(".nav-menu > li > a:not(.nav-dropdown-trigger)");
+        regularNavLinks.forEach((link) => {
             link.addEventListener("click", () => {
-                // Only close on mobile
                 if (window.innerWidth <= 768) {
-                    hamburger.classList.remove("active");
-                    navMenu.classList.remove("active");
-                    hamburger.setAttribute("aria-expanded", "false");
+                    closeHamburgerMenu();
                 }
             });
         });
 
         // Close menu when clicking outside (mobile)
         document.addEventListener("click", (e) => {
-            // Only handle on mobile
             if (window.innerWidth <= 768) {
                 const isClickInsideNav = navMenu.contains(e.target);
                 const isClickOnHamburger = hamburger.contains(e.target);
-                const isClickOnDropdown = e.target.closest(".nav-dropdown");
                 
-                // Don't close if clicking inside nav menu, hamburger, or dropdown
-                if (!isClickInsideNav && !isClickOnHamburger && !isClickOnDropdown && navMenu.classList.contains("active")) {
-                    hamburger.classList.remove("active");
-                    navMenu.classList.remove("active");
-                    hamburger.setAttribute("aria-expanded", "false");
-                    // Also close any open dropdowns
-                    document.querySelectorAll(".nav-dropdown-menu.active").forEach((menu) => {
-                        menu.classList.remove("active");
-                    });
+                if (!isClickInsideNav && !isClickOnHamburger && navMenu.classList.contains("active")) {
+                    closeHamburgerMenu();
                 }
             }
         });
     }
-
-    // Mobile dropdown toggle - handle both mobile and desktop
-    const dropdownTriggers = document.querySelectorAll(".nav-dropdown-trigger");
-    dropdownTriggers.forEach((trigger) => {
-        trigger.addEventListener("click", (e) => {
-            // Check if we're on mobile
-            const isMobile = window.innerWidth <= 768;
-            
-            if (isMobile) {
-                e.preventDefault();
-                e.stopPropagation(); // Prevent event from bubbling up
-                
-                const dropdown = trigger.closest(".nav-dropdown");
-                const dropdownMenu = dropdown ? dropdown.querySelector(".nav-dropdown-menu") : null;
-                
-                if (dropdownMenu) {
-                    const isActive = dropdownMenu.classList.contains("active");
-                    
-                    // Close all dropdowns first
-                    document.querySelectorAll(".nav-dropdown-menu.active").forEach((menu) => {
-                        menu.classList.remove("active");
-                    });
-                    
-                    // Toggle current dropdown (open if it was closed, close if it was open)
-                    if (!isActive) {
-                        dropdownMenu.classList.add("active");
-                    }
-                }
-            }
-            // On desktop, let the hover behavior handle it (don't prevent default)
-        }, true); // Use capture phase to ensure this runs first
-    });
-
-    // Prevent dropdown menu clicks from closing the main menu
-    const dropdownMenus = document.querySelectorAll(".nav-dropdown-menu");
-    dropdownMenus.forEach((menu) => {
-        menu.addEventListener("click", (e) => {
-            e.stopPropagation(); // Prevent click from bubbling to document
-        });
-    });
 });
