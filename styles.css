@@ -521,28 +521,32 @@ body {
         width: 100%;
     }
 
-    /* Disable hover dropdowns on mobile */
-    .nav-dropdown:hover .nav-dropdown-menu,
-    .nav-dropdown:focus-within .nav-dropdown-menu,
-    .nav-dropdown-menu:hover {
-        display: none;
+    /* Disable hover dropdowns on mobile - active class takes precedence */
+    .nav-dropdown:hover .nav-dropdown-menu:not(.active),
+    .nav-dropdown:focus-within .nav-dropdown-menu:not(.active) {
+        max-height: 0 !important;
+        padding: 0 !important;
     }
 
     /* Make dropdown menu toggleable in mobile nav */
     .nav-dropdown-menu {
         position: static;
-        display: none;
+        max-height: 0;
+        overflow: hidden;
         margin-top: 0;
         margin-left: 1rem;
         box-shadow: none;
         border: none;
         background: transparent;
-        padding: 0.5rem 0;
+        padding: 0;
         border-radius: 0;
+        transition: max-height 0.3s ease, padding 0.3s ease;
+        display: block; /* Always display block for max-height transition to work */
     }
 
     .nav-dropdown-menu.active {
-        display: block;
+        max-height: 500px !important;
+        padding: 0.5rem 0 !important;
     }
 
     .nav-dropdown-menu a {
