@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Team E - COMP 523 Project</title>
-    <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Media File Markup</title>
+    <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
     <!-- Navigation -->
@@ -13,8 +13,32 @@
             <div class="nav-brand">Team E Project</div>
             <ul class="nav-menu">
                 <li><a href="#intro">Introduction</a></li>
-                <li><a href="#team">Team</a></li>
-                <li><a href="#contact">Contact</a></li>
+
+                <!-- Deliverables dropdown (add items here + create matching pages under /deliverables/) -->
+                <li class="nav-dropdown">
+                    <a href="#deliverables" class="nav-dropdown-trigger">Deliverables ▾</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="#deliverables">Overview</a></li>
+                        <!-- Add more items like this:
+                             1) create a page: deliverables/my-deliverable.html
+                             2) add a menu link: <li><a href="deliverables/my-deliverable.html">My Deliverable</a></li>
+                        -->
+                        <li><a href="deliverables/project-proposal.html">Project Proposal</a></li>
+                        <li><a href="deliverables/srs.html">SRS</a></li>
+                        <li><a href="deliverables/design-doc.html">Design Doc</a></li>
+                        <li><a href="deliverables/demo.html">Demo</a></li>
+                    </ul>
+                </li>
+
+                <!-- Team dropdown (Contact + Client) -->
+                <li class="nav-dropdown">
+                    <a href="#team" class="nav-dropdown-trigger">Team ▾</a>
+                    <ul class="nav-dropdown-menu">
+                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="#client">Client</a></li>
+                    </ul>
+                </li>
+
                 <li><a href="#schedule">Schedule</a></li>
                 <li><a href="#rules">Team Rules</a></li>
             </ul>
@@ -24,8 +48,8 @@
     <!-- Hero Section -->
     <section class="hero">
         <div class="container">
-            <h1 class="hero-title">Team E Project</h1>
-            <p class="hero-subtitle">COMP 523 - Software Engineering Lab</p>
+            <h1 class="hero-title">Media File Markup Tool</h1>
+            <p class="hero-subtitle">Team E - COMP 523 (Spring 26)</p>
         </div>
     </section>
 
@@ -35,122 +59,116 @@
             <h2 class="section-title">Project Introduction</h2>
             <div class="intro-content">
                 <p class="intro-text">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-                    Our innovative solution addresses a critical need in the modern digital landscape, bringing together cutting-edge technology 
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                    Our innovative solution addresses a critical need in the modern digital landscape, bringing together cutting-edge technology
                     and user-centered design principles.
                 </p>
                 <p class="intro-text">
-                    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-                    We're passionate about creating meaningful impact through thoughtful software engineering, and this project represents 
+                    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                    We're passionate about creating meaningful impact through thoughtful software engineering, and this project represents
                     our commitment to excellence and innovation.
                 </p>
                 <p class="intro-text">
-                    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
+                    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
                     Join us on this journey as we transform ideas into reality and deliver a solution that will make a real difference.
                 </p>
             </div>
         </div>
     </section>
 
-    <!-- Team Roles -->
-    <section id="team" class="section section-alt">
+    <!-- Deliverables (dropdown + easy-to-add pages) -->
+    <section id="deliverables" class="section section-alt">
         <div class="container">
-            <h2 class="section-title">Team Roles</h2>
-            <div class="team-grid">
-                <div class="team-card">
-                    <div class="role-icon">👤</div>
-                    <h3 class="role-title">Project Manager</h3>
-                    <p class="member-name">Team Member 1</p>
-                    <p class="role-description">Oversees project timeline, coordinates team activities, and ensures deliverables are met on schedule.</p>
-                </div>
-                <div class="team-card">
-                    <div class="role-icon">🤝</div>
-                    <h3 class="role-title">Client Manager</h3>
-                    <p class="member-name">Team Member 2</p>
-                    <p class="role-description">Primary liaison with client, manages requirements gathering and client communications.</p>
-                </div>
-                <div class="team-card">
-                    <div class="role-icon">⚙️</div>
-                    <h3 class="role-title">Tech Lead</h3>
-                    <p class="member-name">Team Member 3</p>
-                    <p class="role-description">Leads technical architecture decisions, code reviews, and technical best practices.</p>
-                </div>
-                <div class="team-card">
-                    <div class="role-icon">💻</div>
-                    <h3 class="role-title">Frontend Developer</h3>
-                    <p class="member-name">Team Member 4</p>
-                    <p class="role-description">Focuses on user interface development, UX design, and frontend implementation.</p>
-                </div>
-                <div class="team-card">
-                    <div class="role-icon">🗄️</div>
-                    <h3 class="role-title">Backend Developer</h3>
-                    <p class="member-name">Team Member 5</p>
-                    <p class="role-description">Develops server-side logic, database design, and API integration.</p>
-                </div>
-                <div class="team-card">
-                    <div class="role-icon">🧪</div>
-                    <h3 class="role-title">QA & Testing Lead</h3>
-                    <p class="member-name">Team Member 6</p>
-                    <p class="role-description">Ensures code quality, manages testing strategies, and maintains documentation.</p>
-                </div>
+            <h2 class="section-title">Deliverables</h2>
+
+            <div class="deliverables-grid">
+                <a class="deliverable-card" href="deliverables/project-proposal.html">
+                    <div class="deliverable-icon" aria-hidden="true">📝</div>
+                    <div class="deliverable-title">Project Proposal</div>
+                    <div class="deliverable-meta">Proposal document</div>
+                </a>
+
+                <a class="deliverable-card" href="deliverables/srs.html">
+                    <div class="deliverable-icon" aria-hidden="true">📄</div>
+                    <div class="deliverable-title">SRS</div>
+                    <div class="deliverable-meta">Software requirements</div>
+                </a>
+
+                <a class="deliverable-card" href="deliverables/design-doc.html">
+                    <div class="deliverable-icon" aria-hidden="true">🧩</div>
+                    <div class="deliverable-title">Design Doc</div>
+                    <div class="deliverable-meta">Architecture & UX</div>
+                </a>
+
+                <a class="deliverable-card" href="deliverables/demo.html">
+                    <div class="deliverable-icon" aria-hidden="true">🎥</div>
+                    <div class="deliverable-title">Demo</div>
+                    <div class="deliverable-meta">Video / walkthrough</div>
+                </a>
             </div>
         </div>
     </section>
 
-    <!-- Contact Information -->
-    <section id="contact" class="section">
+    <!-- Team (merged Team + Contact + Client) -->
+    <section id="team" class="section section-alt">
         <div class="container">
-            <h2 class="section-title">Contact Information</h2>
-            <div class="contact-grid">
-                <div class="contact-section">
-                    <h3 class="contact-title">Development Team</h3>
-                    <div class="contact-list">
-                        <div class="contact-item">
-                            <strong>Team Member 1</strong><br>
-                            <a href="mailto:member1@email.com">member1@email.com</a>
-                        </div>
-                        <div class="contact-item">
-                            <strong>Team Member 2</strong><br>
-                            <a href="mailto:member2@email.com">member2@email.com</a>
-                        </div>
-                        <div class="contact-item">
-                            <strong>Team Member 3</strong><br>
-                            <a href="mailto:member3@email.com">member3@email.com</a>
-                        </div>
-                        <div class="contact-item">
-                            <strong>Team Member 4</strong><br>
-                            <a href="mailto:member4@email.com">member4@email.com</a>
-                        </div>
-                        <div class="contact-item">
-                            <strong>Team Member 5</strong><br>
-                            <a href="mailto:member5@email.com">member5@email.com</a>
-                        </div>
-                        <div class="contact-item">
-                            <strong>Team Member 6</strong><br>
-                            <a href="mailto:member6@email.com">member6@email.com</a>
-                        </div>
+            <!-- Anchor so dropdown "Contact" lands here -->
+            <span id="contact" class="anchor-offset"></span>
+
+            <h2 class="section-title">Team</h2>
+
+            <div class="team-block">
+                <h3 class="subsection-title">Team Members</h3>
+
+                <div class="people-row">
+                    <div class="person-card">
+                        <div class="avatar" aria-hidden="true">🧑‍💻</div>
+                        <div class="person-name">Jake Terrill</div>
+                        <div class="person-role">Role </div>
+                        <a class="person-email" href="mailto:terrilj@cs.unc.edu">terrilj@cs.unc.edu</a>
                     </div>
-                    <a href="mailto:member1@email.com,member2@email.com,member3@email.com,member4@email.com,member5@email.com,member6@email.com" class="btn btn-primary">Email Entire Team</a>
-                </div>
-                <div class="contact-section">
-                    <h3 class="contact-title">Client</h3>
-                    <div class="contact-list">
-                        <div class="contact-item">
-                            <strong>Client Name</strong><br>
-                            Organization Name<br>
-                            <a href="mailto:client@email.com">client@email.com</a><br>
-                            <a href="tel:+1234567890">+1 (234) 567-890</a>
-                        </div>
+
+                    <div class="person-card">
+                        <div class="avatar" aria-hidden="true">🧑‍💻</div>
+                        <div class="person-name">Jacob Brown</div>
+                        <div class="person-role">Role</div>
+                        <a class="person-email" href="mailto:jacbro@cs.unc.edu">jacbro@cs.unc.edu</a>
+                    </div>
+
+                    <div class="person-card">
+                        <div class="avatar" aria-hidden="true">🧑‍💻</div>
+                        <div class="person-name">Ryder Klein</div>
+                        <div class="person-role">Role</div>
+                        <a class="person-email" href="mailto:ryd@unc.edu">ryd@unc.edu</a>
+                    </div>
+
+                    <div class="person-card">
+                        <div class="avatar" aria-hidden="true">🧑‍💻</div>
+                        <div class="person-name">Ethan Ahdout</div>
+                        <div class="person-role">Role</div>
+                        <a class="person-email" href="mailto:ahd@unc.edu">ahd@unc.edu</a>
                     </div>
                 </div>
-                <div class="contact-section">
-                    <h3 class="contact-title">Consultants & Advisors</h3>
-                    <div class="contact-list">
-                        <div class="contact-item">
-                            <strong>Consultant Name</strong><br>
-                            Area of Expertise<br>
-                            <a href="mailto:consultant@email.com">consultant@email.com</a>
-                        </div>
+
+                <div class="team-actions">
+                    <a
+                        href="mailto:jacbro@cs.unc.edu,terrilj@cs.unc.edu,ryd@unc.edu,ahd@unc.edu"
+                        class="btn btn-primary"
+                    >
+                        Email Entire Team
+                    </a>
+                </div>
+
+                <!-- Client subsection -->
+                <span id="client" class="anchor-offset"></span>
+                <h3 class="subsection-title subsection-title-spaced">Client</h3>
+
+                <div class="people-row">
+                    <div class="person-card">
+                        <div class="avatar" aria-hidden="true">🏢</div>
+                        <div class="person-name">Dr. John McHugh</div>
+                        <div class="person-role">Title</div>
+                        <a class="person-email" href="mailto:mchugh@cs.unc.edu">mchugh@cs.unc.edu</a>
                     </div>
                 </div>
             </div>
@@ -158,7 +176,7 @@
     </section>
 
     <!-- Schedule -->
-    <section id="schedule" class="section section-alt">
+    <section id="schedule" class="section">
         <div class="container">
             <h2 class="section-title">Schedule of Regular Meetings</h2>
             <div class="schedule-grid">
@@ -166,30 +184,27 @@
                     <div class="schedule-icon">👨‍🏫</div>
                     <h3 class="schedule-title">Professor/Manager Meetings</h3>
                     <div class="schedule-details">
-                        <p><strong>Day:</strong> Tuesdays</p>
-                        <p><strong>Time:</strong> 2:00 PM - 3:00 PM</p>
-                        <p><strong>Location:</strong> TBD</p>
-                        <p><strong>Format:</strong> In-person/Hybrid</p>
+                        <p><strong>Day:</strong> Wednesdays</p>
+                        <p><strong>Time:</strong> 10:30 AM - 11:00 PM</p>
+                        <p><strong>Location:</strong> Zoom</p>
                     </div>
                 </div>
                 <div class="schedule-card">
                     <div class="schedule-icon">🤝</div>
                     <h3 class="schedule-title">Client Meetings</h3>
                     <div class="schedule-details">
-                        <p><strong>Day:</strong> Thursdays</p>
-                        <p><strong>Time:</strong> 3:00 PM - 4:00 PM</p>
-                        <p><strong>Location:</strong> TBD</p>
-                        <p><strong>Format:</strong> Virtual</p>
+                        <p><strong>Day:</strong> Mondays</p>
+                        <p><strong>Time:</strong> 4:00 PM - 4:30 PM</p>
+                        <p><strong>Location:</strong> Zoom</p>
                     </div>
                 </div>
                 <div class="schedule-card">
                     <div class="schedule-icon">👥</div>
                     <h3 class="schedule-title">Team Meetings</h3>
                     <div class="schedule-details">
-                        <p><strong>Day:</strong> Mondays & Wednesdays</p>
+                        <p><strong>Day:</strong> Wednesdays</p>
                         <p><strong>Time:</strong> 5:00 PM - 6:00 PM</p>
-                        <p><strong>Location:</strong> TBD</p>
-                        <p><strong>Format:</strong> In-person</p>
+                        <p><strong>Location:</strong> Zoom</p>
                     </div>
                 </div>
                 <div class="schedule-card">
@@ -205,7 +220,7 @@
         </div>
     </section>
 
-    <!-- Team Rules -->
+    <!-- Team Rules (reincorporated full section) -->
     <section id="rules" class="section">
         <div class="container">
             <h2 class="section-title">Team Rules</h2>
@@ -274,14 +289,6 @@
             </div>
         </div>
     </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2026 Team E - COMP 523 Software Engineering Lab</p>
-            <p>University of North Carolina at Chapel Hill</p>
-        </div>
-    </footer>
 
     <script src="script.js"></script>
 </body>
