@@ -21,16 +21,13 @@
             </button>
             <ul class="nav-menu">
                 <li><a href="#intro">Introduction</a></li>
+                <li><a href="#weekly-reports">Weekly Reports</a></li>
 
                 <!-- Deliverables dropdown (add items here + create matching pages under /deliverables/) -->
                 <li class="nav-dropdown">
                     <a href="#deliverables" class="nav-dropdown-trigger">Deliverables ▾</a>
                     <ul class="nav-dropdown-menu">
                         <li><a href="#deliverables">Overview</a></li>
-                        <!-- Add more items like this:
-                             1) create a page: deliverables/my-deliverable.html
-                             2) add a menu link: <li><a href="deliverables/my-deliverable.html">My Deliverable</a></li>
-                        -->
                         <li><a href="deliverables/project-proposal.html">Project Proposal</a></li>
                         <li><a href="deliverables/srs.html">SRS</a></li>
                         <li><a href="deliverables/design-doc.html">Design Doc</a></li>
@@ -69,20 +66,29 @@
                 <p class="intro-text">
                     Following our initial meeting with Dr. McHugh this section will be updated with the project introduction.
                 </p>
-                <!-- <p class="intro-text">
-                    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                    We're passionate about creating meaningful impact through thoughtful software engineering, and this project represents
-                    our commitment to excellence and innovation.
-                </p>
-                <p class="intro-text">
-                    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                    Join us on this journey as we transform ideas into reality and deliver a solution that will make a real difference.
-                </p> -->
             </div>
         </div>
     </section>
 
-    <!-- Deliverables (dropdown + easy-to-add pages) -->
+    <!-- Weekly Reports -->
+    <section id="weekly-reports" class="section">
+        <div class="container">
+            <h2 class="section-title">Weekly Reports</h2>
+
+            <div class="weekly-reports-block">
+                <div class="weekly-reports-list">
+                    <!-- Add more reports by duplicating this card + creating the matching HTML + PDF file -->
+                    <a class="weekly-report-card" href="weekly-reports/2026-02-04-weekly-report.html">
+                        <div class="weekly-report-icon" aria-hidden="true">📅</div>
+                        <div class="weekly-report-title">2/4/26 Weekly Report</div>
+                        <div class="weekly-report-meta">View report</div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Deliverables -->
     <section id="deliverables" class="section section-alt">
         <div class="container">
             <h2 class="section-title">Deliverables</h2>
@@ -115,10 +121,9 @@
         </div>
     </section>
 
-    <!-- Team (merged Team + Contact + Client) -->
+    <!-- Team -->
     <section id="team" class="section section-alt">
         <div class="container">
-            <!-- Anchor so dropdown "Contact" lands here -->
             <span id="contact" class="anchor-offset"></span>
 
             <h2 class="section-title">Team</h2>
@@ -165,7 +170,6 @@
                     </a>
                 </div>
 
-                <!-- Client subsection -->
                 <span id="client" class="anchor-offset"></span>
                 <h3 class="subsection-title subsection-title-spaced">Client</h3>
 
@@ -226,7 +230,7 @@
         </div>
     </section>
 
-    <!-- Team Rules (reincorporated full section) -->
+    <!-- Team Rules -->
     <section id="rules" class="section">
         <div class="container">
             <h2 class="section-title">Team Rules</h2>

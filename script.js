@@ -5,12 +5,12 @@ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
         if (this.classList.contains("nav-dropdown-trigger")) {
             return;
         }
-        
+
         // Skip dropdown menu links on mobile - they're handled in DOMContentLoaded
         if (window.innerWidth <= 768 && this.closest(".nav-dropdown-menu")) {
             return;
         }
-        
+
         e.preventDefault();
         const target = document.querySelector(this.getAttribute("href"));
         if (target) {
@@ -64,7 +64,7 @@ const observer = new IntersectionObserver((entries) => {
 
 document.addEventListener("DOMContentLoaded", () => {
     const cards = document.querySelectorAll(
-        ".person-card, .schedule-card, .rules-card, .deliverable-card"
+        ".person-card, .schedule-card, .rules-card, .deliverable-card, .weekly-report-card"
     );
 
     cards.forEach((card) => {
@@ -105,35 +105,39 @@ document.addEventListener("DOMContentLoaded", () => {
         // Mobile dropdown toggle - handle BEFORE other click handlers
         const dropdownTriggers = document.querySelectorAll(".nav-dropdown-trigger");
         dropdownTriggers.forEach((trigger) => {
-            trigger.addEventListener("click", (e) => {
-                const isMobile = window.innerWidth <= 768;
-                
-                if (isMobile) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    
-                    const dropdown = trigger.closest(".nav-dropdown");
-                    const dropdownMenu = dropdown ? dropdown.querySelector(".nav-dropdown-menu") : null;
-                    
-                    if (dropdownMenu) {
-                        const isActive = dropdownMenu.classList.contains("active");
-                        
-                        // Close all other dropdowns
-                        document.querySelectorAll(".nav-dropdown-menu.active").forEach((menu) => {
-                            if (menu !== dropdownMenu) {
-                                menu.classList.remove("active");
+            trigger.addEventListener(
+                "click",
+                (e) => {
+                    const isMobile = window.innerWidth <= 768;
+
+                    if (isMobile) {
+                        e.preventDefault();
+                        e.stopPropagation();
+
+                        const dropdown = trigger.closest(".nav-dropdown");
+                        const dropdownMenu = dropdown ? dropdown.querySelector(".nav-dropdown-menu") : null;
+
+                        if (dropdownMenu) {
+                            const isActive = dropdownMenu.classList.contains("active");
+
+                            // Close all other dropdowns
+                            document.querySelectorAll(".nav-dropdown-menu.active").forEach((menu) => {
+                                if (menu !== dropdownMenu) {
+                                    menu.classList.remove("active");
+                                }
+                            });
+
+                            // Toggle current dropdown
+                            if (isActive) {
+                                dropdownMenu.classList.remove("active");
+                            } else {
+                                dropdownMenu.classList.add("active");
                             }
-                        });
-                        
-                        // Toggle current dropdown
-                        if (isActive) {
-                            dropdownMenu.classList.remove("active");
-                        } else {
-                            dropdownMenu.classList.add("active");
                         }
                     }
-                }
-            }, true); // Capture phase - runs first
+                },
+                true
+            ); // Capture phase - runs first
         });
 
         // Handle clicks on dropdown sub-links (scroll and close menu)
@@ -150,7 +154,7 @@ document.addEventListener("DOMContentLoaded", () => {
                             const nav = document.querySelector(".navbar");
                             const navHeight = nav ? nav.offsetHeight : 0;
                             const targetPosition = target.offsetTop - navHeight;
-                            
+
                             window.scrollTo({
                                 top: targetPosition,
                                 behavior: "smooth",
@@ -178,7 +182,7 @@ document.addEventListener("DOMContentLoaded", () => {
             if (window.innerWidth <= 768) {
                 const isClickInsideNav = navMenu.contains(e.target);
                 const isClickOnHamburger = hamburger.contains(e.target);
-                
+
                 if (!isClickInsideNav && !isClickOnHamburger && navMenu.classList.contains("active")) {
                     closeHamburgerMenu();
                 }

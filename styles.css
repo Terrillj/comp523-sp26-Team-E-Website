@@ -218,6 +218,59 @@ body {
     color: var(--text-dark);
 }
 
+/* Weekly Reports */
+.weekly-reports-block {
+    background: var(--bg-white);
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    padding: 2.5rem;
+    border: 1px solid var(--border-color);
+}
+
+.weekly-reports-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+}
+
+.weekly-report-card {
+    display: block;
+    background: var(--bg-white);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 2rem;
+    text-decoration: none;
+    box-shadow: var(--shadow);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: center;
+}
+
+.weekly-report-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-hover);
+}
+
+.weekly-report-icon {
+    font-size: 2.5rem;
+    line-height: 1;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.weekly-report-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--secondary-color);
+    margin-bottom: 0.5rem;
+    text-align: center;
+}
+
+.weekly-report-meta {
+    font-size: 1rem;
+    color: var(--text-light);
+    font-weight: 500;
+}
+
 /* Deliverables */
 .deliverables-grid {
     display: grid;
@@ -263,7 +316,7 @@ body {
     font-weight: 500;
 }
 
-/* Team (new layout) */
+/* Team */
 .team-block {
     background: var(--bg-white);
     border-radius: 12px;
@@ -293,7 +346,7 @@ body {
 }
 
 .person-card {
-    flex: 1 1 220px; /* ensures 4 can sit on one line on wider screens; wraps as needed */
+    flex: 1 1 220px;
     max-width: 260px;
     background: var(--bg-white);
     border: 1px solid var(--border-color);
@@ -370,7 +423,7 @@ body {
     box-shadow: var(--shadow-hover);
 }
 
-/* Schedule Section */
+/* Schedule */
 .schedule-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -413,7 +466,7 @@ body {
     color: var(--secondary-color);
 }
 
-/* Team Rules Section */
+/* Rules */
 .rules-content {
     display: flex;
     flex-direction: column;
@@ -480,7 +533,7 @@ body {
     color: var(--secondary-color);
 }
 
-/* Responsive Design */
+/* Responsive */
 @media (max-width: 768px) {
     .hamburger {
         display: flex;
@@ -511,29 +564,16 @@ body {
         border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     }
 
-    .nav-menu li:last-child {
-        border-bottom: none;
-    }
-
     .nav-menu a {
         display: block;
         padding: 1rem 0;
         width: 100%;
     }
 
-    /* Disable hover dropdowns on mobile - active class takes precedence */
-    .nav-dropdown:hover .nav-dropdown-menu:not(.active),
-    .nav-dropdown:focus-within .nav-dropdown-menu:not(.active) {
-        max-height: 0 !important;
-        padding: 0 !important;
-    }
-
-    /* Make dropdown menu toggleable in mobile nav */
     .nav-dropdown-menu {
         position: static;
         max-height: 0;
         overflow: hidden;
-        margin-top: 0;
         margin-left: 1rem;
         box-shadow: none;
         border: none;
@@ -541,7 +581,7 @@ body {
         padding: 0;
         border-radius: 0;
         transition: max-height 0.3s ease, padding 0.3s ease;
-        display: block; /* Always display block for max-height transition to work */
+        display: block;
     }
 
     .nav-dropdown-menu.active {
@@ -561,11 +601,6 @@ body {
         opacity: 1;
     }
 
-    /* Add clickable area for dropdown trigger */
-    .nav-dropdown-trigger {
-        cursor: pointer;
-    }
-
     .hero-title {
         font-size: 2.5rem;
     }
@@ -582,11 +617,9 @@ body {
         grid-template-columns: 1fr;
     }
 
-    .rules-section {
-        padding: 1.5rem;
-    }
-
-    .team-block {
+    .rules-section,
+    .team-block,
+    .weekly-reports-block {
         padding: 1.5rem;
     }
 
@@ -596,12 +629,6 @@ body {
 }
 
 @media (max-width: 480px) {
-    .navbar .container {
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-    }
-
     .nav-menu {
         width: 100%;
         max-width: 100%;
